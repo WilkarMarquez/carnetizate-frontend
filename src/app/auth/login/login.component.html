@@ -1,0 +1,10 @@
+<div class="login">
+    <h1>Carnetizate</h1>
+    <form #formLogin="ngForm">
+      <label for="username">Código</label>
+      <input type="number" name='username' placeholder="Ingrese código" ngModel required/>
+      <label for="password">Contraseña</label>
+      <input type="password" name='password' placeholder="Ingrese contraseña" ngModel required/>
+      <button type="submit" (click)="onLogin(formLogin)">Iniciar Sesión</button>
+    </form>
+  </div>
