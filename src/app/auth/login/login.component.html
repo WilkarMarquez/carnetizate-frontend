@@ -1,4 +1,9 @@
-<div class="login">
+<main>
+  <div class="container-banner">
+    <img src="https://cdn.unimagdalena.edu.co/images/escudo/bg_dark/512.png" alt="Logo de Unimagdalena">
+  </div>
+  
+  <div class="container-login">
     <h1>Carnetizate</h1>
     <form #formLogin="ngForm">
       <label for="username">Código</label>
@@ -7,4 +12,6 @@
       <input type="password" name='password' placeholder="Ingrese contraseña" ngModel required/>
       <button type="submit" (click)="onLogin(formLogin)">Iniciar Sesión</button>
     </form>
+    <!-- <img src="https://cdn.unimagdalena.edu.co/images/infografia/blue/192.png" alt="pie de página"> -->
   </div>
+</main>

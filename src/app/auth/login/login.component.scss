@@ -1,0 +1,77 @@
+@import "src/styles/variables.scss";
+
+main{
+    display: flex;
+}
+
+main .container-banner{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: $primary-color;
+    height: 100vh;
+    width: 50vh;
+}
+
+.container-banner img{
+    width: 25rem;
+}
+
+main .container-login {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 50vh;
+}
+
+h1,
+label,
+input {
+    font-family: $font-family;
+}
+
+.container-login h1 {
+    font-weight: bold;
+    color: $primary-color;
+    font-size: $font-biglarge;
+}
+
+.container-login{
+    label, input, button{
+        font-size: $font-large;
+    }
+}
+
+.container-login input{
+    border-radius: .5rem;
+}
+
+.container-login button{
+    border-radius: .5rem;
+    border: 0;
+    color: $primary-background-color;
+    background-color: $primary-color;
+    height: 4rem;
+    width: 15rem;
+    font-weight: 500;
+}
+
+// .container-login img{
+//     height: 5rem;
+//     width: auto;
+//     position: absolute;
+//     right: 0;
+//     bottom: 0;
+// }
+
+@media (min-width:700px){
+
+    main .container-banner{
+        display: flex;
+    }
+
+    main .container-login {
+        width: 100vh;
+    }
+}
