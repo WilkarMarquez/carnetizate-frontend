@@ -8,10 +8,12 @@
     <form #formLogin="ngForm">
       <label for="username">Código</label>
       <input type="number" name='username' placeholder="Ingrese código" ngModel required/>
+      <small>Código incorrecto</small>
       <label for="password">Contraseña</label>
       <input type="password" name='password' placeholder="Ingrese contraseña" ngModel required/>
+      <small class="">Contraseña incorrecta</small>
       <button type="submit" (click)="onLogin(formLogin)">Iniciar Sesión</button>
     </form>
-    <!-- <img src="https://cdn.unimagdalena.edu.co/images/infografia/blue/192.png" alt="pie de página"> -->
+    <img src="https://cdn.unimagdalena.edu.co/images/infografia/blue/192.png" alt="pie de página">
   </div>
 </main>

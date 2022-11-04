@@ -10,24 +10,27 @@ main .container-banner{
     justify-content: center;
     background-color: $primary-color;
     height: 100vh;
-    width: 50vh;
+    width: 50vw;
+    max-width: 50rem;
 }
 
 .container-banner img{
-    width: 25rem;
+    width: 20rem;
 }
 
-main .container-login {
+main .container-login{
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     height: 100vh;
-    width: 50vh;
+    width: 50vw;
 }
 
 h1,
 label,
-input {
+input,
+small {
     font-family: $font-family;
 }
 
@@ -35,9 +38,23 @@ input {
     font-weight: bold;
     color: $primary-color;
     font-size: $font-biglarge;
+    margin-top: 0;
+    margin-bottom: 6rem;
 }
 
-.container-login{
+.container-login form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-login form label{
+    font-weight: 500;
+    left: 0;
+    margin-bottom: 1.6rem;
+}
+
+.container-login form{
     label, input, button{
         font-size: $font-large;
     }
@@ -45,6 +62,37 @@ input {
 
 .container-login input{
     border-radius: .5rem;
+    border: .24rem solid $secondary-background-color;
+    width: 24.8rem;
+    height: 3.6rem;
+    padding-left: 1.2rem;
+    margin-bottom: .8rem;
+    font-weight: 400;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+
+
+.container-login small{
+    position: relative;
+    left: 0;
+    font-size: $font-small;
+    font-weight: 500;
+    margin-bottom: 2.4rem;
+    color: hsl(0, 100%, 61%);
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+margin: 0;
+}
+
+input[type=number] { 
+    -moz-appearance:textfield; 
 }
 
 .container-login button{
@@ -55,23 +103,23 @@ input {
     height: 4rem;
     width: 15rem;
     font-weight: 500;
+    margin-top: 2rem;
 }
 
-// .container-login img{
-//     height: 5rem;
-//     width: auto;
-//     position: absolute;
-//     right: 0;
-//     bottom: 0;
-// }
+.container-login img{
+    height: 5rem;
+    width: max-content;
+    position: absolute;
+    bottom: 0;
+}
 
-@media (min-width:700px){
+@media (min-width:1000px) {
 
     main .container-banner{
         display: flex;
     }
 
     main .container-login {
-        width: 100vh;
+        width: 100vw;
     }
 }

@@ -11,6 +11,7 @@ import { Credentials } from 'src/app/models/credentials';
 export class LoginComponent implements OnInit {
 
   user: Credentials = {username: 0, password: ''};
+  
 
   constructor(private authService: AuthService, private router: Router) { }
 
