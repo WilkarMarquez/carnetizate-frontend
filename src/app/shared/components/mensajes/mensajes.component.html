@@ -1,0 +1,11 @@
+<div class="listaMensajes">
+    <div *ngFor='let mensaje of mensajeService.mensajes' [@mensajeAnimado] [ngClass]="['col-12 md:col-offset-3 lg:col-offset-6 xl:col-offset-7 md:col-7 lg:col-6 xl:col-5 p-3 severidad-'+mensaje.severidad, mensaje.posicion === 'abajo' ? 'abajo-derecha':'arriba-derecha']" role="alert">
+        <div class="flex flex-row justify-content-between">
+            <div class="flex align-items-center justify-content-center">
+                <span [ngClass]="['p-message-icon text-3xl', mensaje.severidad === 'error' ? 'far fa-times-circle' : mensaje.severidad === 'success' ? 'far fa-check-circle' : mensaje.severidad === 'info' ? 'fas fa-info-circle' : 'fas fa-exclamation-triangle']"></span>
+                <span class="m-2" >{{mensaje.resumen}}</span>
+            </div>
+            <span class="fas fa-times cursor-pointer" (click)="cerrarMesajes()"><span class="sr-only">Cerrar alertas</span></span>
+        </div>
+    </div>
+</div>

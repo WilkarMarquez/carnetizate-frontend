@@ -1,0 +1,65 @@
+@import "src/styles/variables.scss";
+
+
+.listaMensajes{
+  position: absolute;
+  z-index: 9100;
+  opacity: 0.9;
+}
+
+.m-2{
+  font-size: $font-medium;
+}
+
+.listaMensajes div{
+  border-radius: 5px;
+  font-size: 15px;
+  right: 5px;
+}
+
+// .listaMensajes div > div{
+//   display: flex;
+//   flex-direction: row;
+//   align-items: center;
+//   justify-content: space-between;
+//   height: 5rem;
+// }
+
+// .listaMensajes div div div{
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+.arriba-derecha {
+  position: fixed;
+  top: 58px;
+}
+
+.abajo-derecha {
+  position: fixed;
+  bottom: 110px;
+}
+.severidad-success, .severidad-warn, .severidad-error, .severidad-info{
+  box-shadow: 0 3px 6px 0 hsla(0, 0%, 0%, 0.2);
+}
+.severidad-success{
+  background-color: $green-08-color;
+  color: $green-06-color;
+  border-left: 4px solid $green-06-color;
+}
+.severidad-warn{
+  background-color: $warning-light-color;
+  color:$warning-dark-color;
+  border-left: 4px solid $warning-dark-color;
+}
+.severidad-error{
+  background-color: $error-light-color;
+  color:$error-dark-color;
+  border-left: 4px solid $error-dark-color;
+}
+.severidad-info{
+  background-color: $highlight-background-color;
+  color:$primary-color;
+  border-left: 4px solid $primary-color;
+}

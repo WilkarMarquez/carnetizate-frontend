@@ -5,14 +5,28 @@
   
   <div class="container-login">
     <h1>Carnetizate</h1>
-    <form #formLogin="ngForm">
-      <label for="username">Código</label>
-      <input type="number" name='username' placeholder="Ingrese código" ngModel required/>
-      <small>Código incorrecto</small>
+    <form [formGroup]="formLogin" (ngSubmit)="onLogin()">
+      <label for="username">Código estudiantil</label>
+      <input type="text" pInputText formControlName="username" id="username" placeholder="Ingrese su código"  ngModel required/>
+      <span class="p-error ng-invalid" *ngIf="formLogin.controls['username'].errors?.['required'] && formLogin.controls['username'].touched">
+          El código es requerido.
+      </span>
+      <span class="p-error ng-invalid" *ngIf="(formLogin.controls['username'].errors?.['maxlength'] || formLogin.controls['username'].errors?.['minlength']) && formLogin.controls['username'].touched">
+        El código debe tener 10 dígitos.
+      </span>
+      
       <label for="password">Contraseña</label>
-      <input type="password" name='password' placeholder="Ingrese contraseña" ngModel required/>
-      <small class="">Contraseña incorrecta</small>
-      <button type="submit" (click)="onLogin(formLogin)">Iniciar Sesión</button>
+      <input type="password" pInputText formControlName="password" id="password" placeholder="Ingrese su contraseña" ngModel required/>
+      <span class="p-error ng-invalid" *ngIf="formLogin.controls['password'].errors?.['required'] && formLogin.controls['password'].touched">
+        La contraseña es requerida.
+      </span>
+      <span class="p-error ng-invalid" *ngIf="formLogin.controls['password'].errors?.['maxlength'] && formLogin.controls['password'].touched">
+        La contraseña solo puede tener máximo {{formLogin.controls['password'].errors?.['maxlength'].requiredLength}} caracteres.
+      </span>
+      <span class="p-error ng-invalid" *ngIf="formLogin.controls['password'].errors?.['minlength'] && formLogin.controls['password'].touched">
+        La contraseña debe tener mínimo {{formLogin.controls['password'].errors?.['minlength'].requiredLength}} caracteres.
+      </span>
+      <button type="submit" [disabled]="!formLogin.valid || peticionEnviada" [ngClass]="{'button-disabled':peticionEnviada}">Iniciar Sesión</button>
     </form>
     <img src="https://cdn.unimagdalena.edu.co/images/infografia/blue/192.png" alt="pie de página">
   </div>

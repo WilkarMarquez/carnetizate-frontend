@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthRoutingModule } from './auth-routing.module';
-import { AuthService } from '../service/auth.service';
+import { AuthService } from '../service/autentication/auth.service';
+import { PrimengSharedModule } from '../shared/primeng-shared.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,9 @@ import { AuthService } from '../service/auth.service';
     CommonModule,
     FormsModule, 
     HttpClientModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    PrimengSharedModule,
+    ReactiveFormsModule
   ],
   providers:[AuthService]
 })

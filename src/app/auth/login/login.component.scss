@@ -2,6 +2,7 @@
 
 main{
     display: flex;
+    align-items: center;
 }
 
 main .container-banner{
@@ -24,13 +25,12 @@ main .container-login{
     justify-content: center;
     flex-direction: column;
     height: 100vh;
-    width: 50vw;
+    width: 100vw;
 }
 
 h1,
 label,
-input,
-small {
+input {
     font-family: $font-family;
 }
 
@@ -39,19 +39,18 @@ small {
     color: $primary-color;
     font-size: $font-biglarge;
     margin-top: 0;
-    margin-bottom: 6rem;
+    margin-bottom: 4.4rem;
 }
 
 .container-login form{
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .container-login form label{
     font-weight: 500;
     left: 0;
-    margin-bottom: 1.6rem;
+    margin-bottom: 0.8rem;
 }
 
 .container-login form{
@@ -62,40 +61,21 @@ small {
 
 .container-login input{
     border-radius: .5rem;
-    border: .24rem solid $secondary-background-color;
+    border: .2rem solid $secondary-background-color;
     width: 24.8rem;
     height: 3.6rem;
     padding-left: 1.2rem;
     margin-bottom: .8rem;
     font-weight: 400;
+    
 
     &:focus {
         outline: none;
     }
 }
 
-
-
-.container-login small{
-    position: relative;
-    left: 0;
-    font-size: $font-small;
-    font-weight: 500;
-    margin-bottom: 2.4rem;
-    color: hsl(0, 100%, 61%);
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-margin: 0;
-}
-
-input[type=number] { 
-    -moz-appearance:textfield; 
-}
-
 .container-login button{
+    align-self: center;
     border-radius: .5rem;
     border: 0;
     color: $primary-background-color;
@@ -104,6 +84,20 @@ input[type=number] {
     width: 15rem;
     font-weight: 500;
     margin-top: 2rem;
+}
+
+.button-disabled{
+    cursor: pointer;
+    background-color: red;
+    color: orange;
+}
+
+span{
+    max-width: 24.8rem;
+    font-size: $font-medium;
+    margin-bottom: 1rem;
+    overflow-wrap: break-word;
+    font-weight: 600;
 }
 
 .container-login img{
