@@ -23,7 +23,7 @@ export class MensajesService {
       this.timeOut = setTimeout(() => {
         this.limpiarMensajes();
         this.timeOut = null;
-      }, 6000000000);
+      }, 10000);
     }
     this.mensajes.push(mensaje);
   }

@@ -15,13 +15,13 @@
         El código debe tener 10 dígitos.
       </span>
       
-      <label for="password">Contraseña</label>
+      <label for="password" id="passwordLabel">Contraseña</label>
       <input type="password" pInputText formControlName="password" id="password" placeholder="Ingrese su contraseña" ngModel required/>
       <span class="p-error ng-invalid" *ngIf="formLogin.controls['password'].errors?.['required'] && formLogin.controls['password'].touched">
         La contraseña es requerida.
       </span>
       <span class="p-error ng-invalid" *ngIf="formLogin.controls['password'].errors?.['maxlength'] && formLogin.controls['password'].touched">
-        La contraseña solo puede tener máximo {{formLogin.controls['password'].errors?.['maxlength'].requiredLength}} caracteres.
+        La contraseña debe tener máximo {{formLogin.controls['password'].errors?.['maxlength'].requiredLength}} caracteres.
       </span>
       <span class="p-error ng-invalid" *ngIf="formLogin.controls['password'].errors?.['minlength'] && formLogin.controls['password'].touched">
         La contraseña debe tener mínimo {{formLogin.controls['password'].errors?.['minlength'].requiredLength}} caracteres.

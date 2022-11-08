@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TooltipModule } from 'primeng/tooltip';
 import { MensajesComponent} from './components/mensajes/mensajes.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 @NgModule({
-  declarations: [MensajesComponent],
+  declarations: [
+    MensajesComponent,
+    LoadingComponent
+  ],
   imports: [
-    CommonModule,
-    TooltipModule
+    CommonModule
   ]
 })
 export class SharedModule { }

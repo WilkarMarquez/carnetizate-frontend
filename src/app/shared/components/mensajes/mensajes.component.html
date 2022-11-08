@@ -5,7 +5,7 @@
                 <span [ngClass]="['p-message-icon text-3xl', mensaje.severidad === 'error' ? 'far fa-times-circle' : mensaje.severidad === 'success' ? 'far fa-check-circle' : mensaje.severidad === 'info' ? 'fas fa-info-circle' : 'fas fa-exclamation-triangle']"></span>
                 <span class="m-2" >{{mensaje.resumen}}</span>
             </div>
-            <span class="fas fa-times cursor-pointer" (click)="cerrarMesajes()"><span class="sr-only">Cerrar alertas</span></span>
+            <span class="fas fa-times cursor-pointer" (click)="cerrarMesajes()"></span>
         </div>
     </div>
 </div>

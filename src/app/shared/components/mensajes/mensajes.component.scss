@@ -9,6 +9,7 @@
 
 .m-2{
   font-size: $font-medium;
+  font-weight: 500;
 }
 
 .listaMensajes div{
@@ -16,20 +17,6 @@
   font-size: 15px;
   right: 5px;
 }
-
-// .listaMensajes div > div{
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   justify-content: space-between;
-//   height: 5rem;
-// }
-
-// .listaMensajes div div div{
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
 
 .arriba-derecha {
   position: fixed;

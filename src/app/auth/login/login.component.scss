@@ -53,6 +53,10 @@ input {
     margin-bottom: 0.8rem;
 }
 
+.container-login #passwordLabel{
+    margin-top: 2.4rem;
+}
+
 .container-login form{
     label, input, button{
         font-size: $font-large;
@@ -60,14 +64,14 @@ input {
 }
 
 .container-login input{
-    border-radius: .5rem;
-    border: .2rem solid $secondary-background-color;
+    border: .1rem solid $secondary-background-color;
     width: 24.8rem;
     height: 3.6rem;
     padding-left: 1.2rem;
     margin-bottom: .8rem;
     font-weight: 400;
-    
+    border-radius: .3rem;
+    color: $secondary-background-color;
 
     &:focus {
         outline: none;
@@ -76,7 +80,6 @@ input {
 
 .container-login button{
     align-self: center;
-    border-radius: .5rem;
     border: 0;
     color: $primary-background-color;
     background-color: $primary-color;
@@ -84,6 +87,8 @@ input {
     width: 15rem;
     font-weight: 500;
     margin-top: 2rem;
+    border-radius: .3rem;
+
 }
 
 .button-disabled{
