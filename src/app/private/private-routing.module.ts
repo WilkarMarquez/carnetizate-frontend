@@ -12,9 +12,9 @@ const routes: Routes = [{ path: '', component: PrivateComponent, children: [
         {path: 'carnetizate', component: CarnetizateComponent},
         {path: 'informacion', component: InformacionComponent},
         {path: 'buscar', component: BuscarComponent},
-        {path: 'informes', component: EstadisticasComponent}
-        ]
-      }
+        {path: 'informes', component: EstadisticasComponent},
+        {path: '', component: HomeComponent}
+      ]}
 ];
 
 @NgModule({

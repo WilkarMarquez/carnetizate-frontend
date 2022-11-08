@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       (res:userLogin) => {
           this.loader.ocultarCargando();
           this.router.navigate([this.url]);
-          this.authService.setAutenticacion(res);
+          this.authService.setAutenticacion(res, this.userCredential.username);
       },(res) => {
         this.loader.ocultarCargando();
         const messError = res.error.message;

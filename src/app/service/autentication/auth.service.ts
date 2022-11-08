@@ -51,10 +51,16 @@ export class AuthService{
 
     public borrarDatosAutenticacion(){
         this.localStorageService.remover('datosAutenticacion');
+        this.localStorageService.remover('codigo');
     }
-
-    public setAutenticacion(user: userLogin){
+    
+    public setAutenticacion(user: userLogin, cod:number){
+        this.localStorageService.almacenarCodigo('codigo', cod);
         this.localStorageService.almacenar('datosAutenticacion', user);
         this.fuenteAutenticacion.next(true);
+    }
+
+    public getCodigo():number{
+        return this.localStorageService.consultar('codigo');
     }
 }

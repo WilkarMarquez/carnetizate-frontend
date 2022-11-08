@@ -1,1 +1,22 @@
-<p>home works!</p>
+<div class="container">
+    <div>
+        <h3 *ngIf="user?.role == 1">Estudiante</h3>
+        <h3 *ngIf="user?.role == 2">Auxiliar administrativo</h3>
+    </div>
+    <div class="carnet">
+        <div class="escudo-titulo">
+            <img src="https://cdn.unimagdalena.edu.co/images/escudo/bg_light/72.png" alt="Logo de la Universidad del Magdalena">
+            <h3>UNIMAGDALENA</h3>
+        </div>
+        <div class="informacion-foto">
+            <div class="informacion">
+                <p class="nombres">{{user?.firstName}}<br>{{user?.lastName}}</p>
+                <p class="identificacion" *ngIf="user?.role == 1">COD {{codigo}}</p>
+                <p class="identificacion" *ngIf="user?.role == 2">CC {{codigo}}</p>
+            </div>
+            <div class="foto">
+                <img src="../../../../assets/img/user.png" alt="Foto de usuario">
+            </div>
+        </div>
+    </div>
+</div>

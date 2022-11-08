@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { HttpClientModule } from '@angular/common/http';
+import {FullCalendarModule} from 'primeng/fullcalendar';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     BrowserAnimationsModule,
     ProgressSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    FullCalendarModule
     
   ],
   providers: [],

@@ -1,6 +1,12 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
-import { CalendarOptions, defineFullCalendarElement } from '@fullcalendar/web-component';
+import { CalendarOptions, defineFullCalendarElement, FullCalendarElement } from '@fullcalendar/web-component';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import esLocale  from '@fullcalendar/core/locales/es';
+import { AuthService } from 'src/app/service/autentication/auth.service';
+import { userLogin } from 'src/app/models/userLogin';
+import { RolEnum} from 'src/app/enum/rol.enum';
+
+defineFullCalendarElement();
 
 @Component({
   selector: 'app-carnetizate',
@@ -9,18 +15,50 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 })
 export class CarnetizateComponent implements OnInit {
 
-  constructor() { }
+  calendarOptions: CalendarOptions = Object.assign({},FullcalendarConfig.options);
+  @ViewChild('calendar') calendar:FullCalendarElement | undefined;
+  user: userLogin | null;
+  codigo: number;
+  constructor(private authService: AuthService) {
+    this.user = { id:-1,firstName:'',lastName:'',email:'',role:-1,token:'' };
+    this.codigo = 0;
+  }
 
-  calendarOptions: CalendarOptions = {
-    plugins: [dayGridPlugin],
+  ngOnInit(): void {
+    this.user = this.authService.getDatosAutenticacion();
+    this.codigo = this.authService.getCodigo();
+
+
+  }
+  
+  condicionesEstudiantes(){
+    
+  }
+
+
+  establecerEventoClick():void{
+    this.calendarOptions.eventClick = (info) => {}
+  }
+
+}
+  
+export class FullcalendarConfig {
+
+  public static options: CalendarOptions = {
+    locale:esLocale,
+    weekends: false,
+    slotDuration:{minutes:15},
+    nowIndicator: true,
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
-      right: 'dayGridMonth,dayGridWeek,dayGridDay'
-    }
+      right: 'dayGridDay,dayGridMonth'
+    },
+    plugins: [dayGridPlugin],
+    editable: true,
+    //initialView: "timeGridWeek",
+    slotMinTime: "08:00:00",
+    slotMaxTime: "18:00:00",
+    height: '90%'
   };
-
-  ngOnInit(): void {
-  }
-
 }

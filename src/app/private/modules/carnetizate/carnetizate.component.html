@@ -1,1 +1,3 @@
-<full-calendar [options]='calendarOptions'></full-calendar>
+<h3 *ngIf="user?.role == 1">Agenta tu cita para carnetizarte.</h3>
+<h3 *ngIf="user?.role == 2">Calendario de citas.</h3>
+<full-calendar #calendar id="calendario"[options]='calendarOptions'></full-calendar>

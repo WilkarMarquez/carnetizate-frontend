@@ -12,8 +12,12 @@ export class LocalStorageService {
     this.localStorage = localStorage;
   }
 
-  public almacenar(key: string, valor: userLogin) {
+  public almacenar(key: string, valor: userLogin){
     this.localStorage.setItem(key, JSON.stringify(valor));
+  }
+
+  public almacenarCodigo(key: string, valor: number){
+    this.localStorage.setItem(key, JSON.stringify(valor))
   }
 
   public consultar(key: string): any {
