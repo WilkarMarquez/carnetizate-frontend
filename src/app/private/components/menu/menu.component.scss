@@ -1,0 +1,56 @@
+@import "src/styles/variables.scss";
+
+.sidebar{
+    min-height: 100%;
+    width: 0px;
+    overflow-x: hidden;
+    border-right: 0.1rem solid $warning-info-color;
+}
+
+.sidebar ul{
+    margin:0px;
+    padding: 0px;
+    width: 100%;
+}
+
+.sidebar ul li{
+    position: relative;
+    min-height: 4.4rem;
+    width: 100%;
+    margin: 0px;
+    list-style: none;
+    line-height: 4.4rem;
+}
+
+.sidebar ul li div a{
+    color: $primary-dark-color;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: $font-large;
+    font-weight: 500;
+}
+
+.sidebar ul li div a:hover{
+    color: $primary-background-color;
+    background-color: $primary-color;
+}
+
+.sidebar ul li div a .icono{
+    min-width: 5.2rem;
+    text-align: center;
+}
+
+.sidebar.abierta{
+    width: 22rem;
+}
+
+
+.enlaceSimple{
+    display: block;
+}
+
+.enlaceConAccion{
+    display: none;
+}

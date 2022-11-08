@@ -1,0 +1,18 @@
+<div class="sidebar abierta">
+    <nav>
+        <ul class="list-none" role="tree">
+            <li *ngFor="let item of itemsHabilitados" role="treeitem">
+                <div *ngIf="item.visible && item.routerLink">
+                    <a [routerLink]="item.routerLink" class="enlaceSimple">
+                        <span class="{{ item.icon }}"></span>
+                        <span>{{ item.label }}</span>
+                    </a>
+                    <a (click)="verOpcion(item.routerLink)" class="enlaceConAccion">
+                        <span class="{{ item.icon }}"></span>
+                        <span>{{ item.label }}</span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+</div>

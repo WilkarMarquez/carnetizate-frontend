@@ -1,0 +1,37 @@
+@import "src/styles/variables.scss";
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 6.2rem;
+    padding-left: 1.2rem;
+    padding-right: 1.6rem;
+    width: 100vw;
+    border-bottom: 0.1rem solid $primary-light-color;
+}
+
+h2{
+    font-family: $font-family;
+    font-size: $font-biglarge;
+    color: $primary-color;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+div .p-tooltip-text{
+    font-size: 100rem !important;
+}
+button{
+    font-size: $font-biglarge !important;
+    font-weight: 600 !important;
+    color: $primary-color !important;
+    height: 4.4rem !important;
+    width: 4.4rem !important;
+}
+
+span{
+    font-size: $font-large;
+}
