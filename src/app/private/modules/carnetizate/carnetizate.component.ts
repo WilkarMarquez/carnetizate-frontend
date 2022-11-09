@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarOptions, defineFullCalendarElement, FullCalendarElement } from '@fullcalendar/web-component';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import esLocale  from '@fullcalendar/core/locales/es';
 import { AuthService } from 'src/app/service/autentication/auth.service';
 import { userLogin } from 'src/app/models/userLogin';
-import { RolEnum} from 'src/app/enum/rol.enum';
+import interactionPlugin from '@fullcalendar/interaction';
 
 defineFullCalendarElement();
 
@@ -19,26 +19,44 @@ export class CarnetizateComponent implements OnInit {
   calendarOptions: CalendarOptions = Object.assign({},FullcalendarConfig.options);
   @ViewChild('calendar') calendar:FullCalendarElement | undefined;
   user: userLogin | null;
-  codigo: number;
+  mostrarInfo: boolean;
+  infoFechaSeleccionada: {};
+
   constructor(private authService: AuthService) {
     this.user = { id:-1,firstName:'',lastName:'',email:'',role:-1,token:'' };
-    this.codigo = 0;
+    this.mostrarInfo =  false;
+    this.infoFechaSeleccionada = Date();
   }
 
   ngOnInit(): void {
     this.user = this.authService.getDatosAutenticacion();
-    this.codigo = this.authService.getCodigo();
-
-
+    this.motrarSeleccionarTurno();
+    this.calendarOptions.events = [
+      {
+        title: "Evento 1",
+        start: new Date().getTime(),
+        description: "evento 1"
+      },
+      {
+        title: "Evento 2",
+        start: new Date(new Date().getTime() + 86400000),
+        description: "evento 2"
+      },
+      {
+        title: "Evento 3",
+        start: new Date(new Date().getTime() + (86400000 * 2)),
+        end: new Date(new Date().getTime() + (86400000 * 3)),
+        description: "evento 2"
+      },
+    ]
   }
-  
-  condicionesEstudiantes(){
-    
-  }
 
-
-  establecerEventoClick():void{
-    this.calendarOptions.eventClick = () => {}
+  motrarSeleccionarTurno():void{
+    this.calendarOptions.dateClick = (info) => {
+      this.mostrarInfo = true;
+      this.infoFechaSeleccionada = info.date.getDay;
+      
+    }
   }
 
 }
@@ -56,9 +74,8 @@ export class FullcalendarConfig {
       left: 'prev,next today',
       center: 'title',
     },
-    plugins: [dayGridPlugin, timeGridPlugin],
+    plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
     initialView: 'timeGridWeek',
-    editable: true,
     slotMinTime: "08:00:00",
     slotMaxTime: "18:00:00",
     height: '90%'

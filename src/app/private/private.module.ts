@@ -11,6 +11,7 @@ import { InformacionComponent } from './modules/informacion/informacion.componen
 import { BuscarComponent } from './modules/buscar/buscar.component';
 import { EstadisticasComponent } from './modules/estadisticas/estadisticas.component';
 import { PeticionesComponent } from './modules/peticiones/peticiones.component';
+import {DialogModule} from 'primeng/dialog';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { PeticionesComponent } from './modules/peticiones/peticiones.component';
   imports: [
     CommonModule,
     PrivateRoutingModule,
-    PrimengSharedModule
+    PrimengSharedModule,
+    DialogModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 

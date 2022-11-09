@@ -5,11 +5,11 @@
                 <div *ngIf="item.visible && item.routerLink">
                     <a [routerLink]="item.routerLink" class="enlaceSimple">
                         <span class="{{ item.icon }}"></span>
-                        <span>{{ item.label }}</span>
+                        <span  class="spanEnlaceSimple">{{ item.label }}</span>
                     </a>
                     <a (click)="verOpcion(item.routerLink)" class="enlaceConAccion">
                         <span class="{{ item.icon }}"></span>
-                        <span>{{ item.label }}</span>
+                        <span class="spanEnlaceSimple">{{ item.label }}</span>
                     </a>
                 </div>
             </li>

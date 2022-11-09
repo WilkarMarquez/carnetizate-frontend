@@ -3,7 +3,7 @@
 .sidebar{
     min-height: calc(100vh - 6.2rem);
     width: 0px;
-    overflow-x: hidden;
+    overflow: hidden;
     border-right: 0.1rem solid $tertiary-gray-color;
 }
 
@@ -23,16 +23,23 @@
 }
 
 .sidebar ul li div a{
-    color: $secondary-background-color;
+    color: $primary-dark-color;
     align-items: center;
     text-decoration: none;
     cursor: pointer;
     width: 100%;
     font-size: $font-large;
-    font-weight: 400;
+    font-weight: 600;
+}
+
+.spanEnlaceSimple{
+    color: $secondary-background-color;
 }
 
 .sidebar ul li div a:hover{
+    .spanEnlaceSimple{
+        color: $primary-background-color;
+    }
     color: $primary-background-color;
     background-color: $primary-color;
 }
@@ -53,4 +60,42 @@
 
 .enlaceConAccion{
     display: none;
+}
+
+@media (max-width:650px){
+
+    nav{
+        min-width: 100vw;
+        min-height: 100%;
+    }
+
+    .sidebar{
+        border: 0;
+        border-top: 0.1rem solid $tertiary-gray-color
+    }
+
+    .sidebar ul{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .sidebar ul li{
+        text-align: center;
+        align-items: center;
+        min-height: 6rem;
+        line-height: 6rem;
+    }
+
+    .sidebar.abierta{
+        display: flex;
+        align-items: center;
+        min-height: 6rem;
+        min-width: 100vw;
+        position: absolute;
+        bottom: 0;
+    }
+    
+    .spanEnlaceSimple{
+        display: none;
+    }
 }

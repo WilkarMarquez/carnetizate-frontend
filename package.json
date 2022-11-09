@@ -20,6 +20,7 @@
     "@angular/router": "^14.2.0",
     "@fullcalendar/core": "^6.0.0-beta.1",
     "@fullcalendar/daygrid": "^6.0.0-beta.1",
+    "@fullcalendar/interaction": "^6.0.0-beta.1",
     "@fullcalendar/timegrid": "^6.0.0-beta.1",
     "@fullcalendar/web-component": "^6.0.0-beta.1",
     "primeflex": "^3.2.1",
