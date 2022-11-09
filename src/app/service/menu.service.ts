@@ -26,14 +26,19 @@ export class MenuUsuarioService {
         label:'Carnetizate',
         routerLink: ["/user/carnetizate"],
         icon:'fas fa-solid fa-id-card icono',
-        visible: this.seguridadService.mostrarOpcion(RolEnum.Estudiante) 
-                  || this.seguridadService.mostrarOpcion(RolEnum.Auxiliar)
+        visible: this.seguridadService.mostrarOpcion(RolEnum.Estudiante)
       },
       {
         label:'Informacion',
         routerLink: ["/user/informacion"],
         visible: this.seguridadService.mostrarOpcion(RolEnum.Estudiante),
         icon: 'fas fa-solid fa-info icono'
+      },
+      {
+        label:'Peticiones',
+        routerLink: ["/user/peticiones"],
+        visible: this.seguridadService.mostrarOpcion(RolEnum.Auxiliar),
+        icon: 'fas fa-solid fa-id-card icono'
       },
       {
         label:'Buscar',

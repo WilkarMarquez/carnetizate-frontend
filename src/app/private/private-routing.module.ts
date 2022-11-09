@@ -6,6 +6,7 @@ import { CarnetizateComponent } from './modules/carnetizate/carnetizate.componen
 import { InformacionComponent } from './modules/informacion/informacion.component';
 import { BuscarComponent } from './modules/buscar/buscar.component';
 import { EstadisticasComponent } from './modules/estadisticas/estadisticas.component';
+import { PeticionesComponent } from './modules/peticiones/peticiones.component';
 
 const routes: Routes = [{ path: '', component: PrivateComponent, children: [
         {path: 'home', component: HomeComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [{ path: '', component: PrivateComponent, children: [
         {path: 'informacion', component: InformacionComponent},
         {path: 'buscar', component: BuscarComponent},
         {path: 'informes', component: EstadisticasComponent},
+        {path: 'peticiones', component: PeticionesComponent},
         {path: '', component: HomeComponent}
       ]}
 ];

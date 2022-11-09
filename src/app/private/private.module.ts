@@ -10,6 +10,7 @@ import { CarnetizateComponent } from './modules/carnetizate/carnetizate.componen
 import { InformacionComponent } from './modules/informacion/informacion.component';
 import { BuscarComponent } from './modules/buscar/buscar.component';
 import { EstadisticasComponent } from './modules/estadisticas/estadisticas.component';
+import { PeticionesComponent } from './modules/peticiones/peticiones.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { EstadisticasComponent } from './modules/estadisticas/estadisticas.compo
     CarnetizateComponent,
     InformacionComponent,
     BuscarComponent,
-    EstadisticasComponent
+    EstadisticasComponent,
+    PeticionesComponent
   ],
   imports: [
     CommonModule,
