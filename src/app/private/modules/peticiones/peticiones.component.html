@@ -1,1 +1,13 @@
-<p>peticiones works!</p>
+<div class="container">
+    <div class="titulo-calendario">
+        <h3 *ngIf="user?.role == 2">Calendario de peticiones.</h3>
+        <full-calendar #peticiones id="peticiones"[options]='calendarOptions'></full-calendar>
+    </div>
+    <p-dialog header="Desea realizar petición de nuevo carnet" [modal]="true" [draggable]="false" [resizable]="false" [(visible)]="mostrarInfo" [dismissableMask]="true">
+        <h3>Desea agendar turno para sacar tu carnet en la hora </h3>
+        <div>
+            <button label="Cancelar" class="cancelar">Cancelar</button>
+            <button label="Carnetizate" class="carnetizate">Carnetizate</button>
+        </div>
+    </p-dialog>
+</div>

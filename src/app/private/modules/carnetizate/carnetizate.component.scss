@@ -1,11 +1,9 @@
 @import "src/styles/variables.scss";
 
-.container{
+.titulo-calendario{
     display: flex;
-    align-items: center;
-    position: relative;
-    top: 0;
     flex-direction: column;
+
 }
 
 h3{
@@ -13,6 +11,7 @@ h3{
     font-size: $font-large;
     margin-top: 0;
     margin-bottom: 2rem;
+    text-align: center;
 }
 
 #calendario{
