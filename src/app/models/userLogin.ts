@@ -1,8 +1,9 @@
 export interface userLogin{
-    id: number,
+    id: string,
     firstName: string,
     lastName: string,
     email: string,
+    carnet: boolean,
     role: number,
     token: string
 }

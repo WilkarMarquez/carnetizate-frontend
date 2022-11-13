@@ -1,0 +1,14 @@
+@import "src/styles/variables.scss";
+
+.card{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.card h5{
+    font-size: $font-large;
+    font-family: $font-family;
+    text-align: center;
+}

@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
   user: userLogin | null;
   codigo: number;
   constructor(private authService: AuthService) {
-    this.user = { id:-1,firstName:'',lastName:'',email:'',role:-1,token:'' };
+    this.user = { id:'',firstName:'',lastName:'',email:'',role:-1,token:'', carnet: false };
     this.codigo = 0;
   }
 

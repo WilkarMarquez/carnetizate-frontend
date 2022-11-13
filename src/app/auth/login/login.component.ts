@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     ) { 
     this.userCredential = {username:0, password:''};
     this.peticionEnviada = false;
-    this.url = '/user';
+    this.url = '/user/home';
     this.formLogin = new FormGroup({
       username: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10) ]),
       password: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(50)])
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.authService.borrarDatosAutenticacion();
     }
     //this.url = this.route.snapshot.queryParams['returnUrl'] || '/autorizado/inicio';
-    this.url = this.route.snapshot.queryParams['url'] || 'user';
+    this.url = this.route.snapshot.queryParams['url'] || 'user/home';
   }
 
   ngOnDestroy(): void {

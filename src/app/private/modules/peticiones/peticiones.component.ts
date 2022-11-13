@@ -7,8 +7,6 @@ import { AuthService } from 'src/app/service/autentication/auth.service';
 import { userLogin } from 'src/app/models/userLogin';
 import interactionPlugin from '@fullcalendar/interaction';
 
-// defineFullCalendarElement(peticiones);
-
 @Component({
   selector: 'app-peticiones',
   templateUrl: './peticiones.component.html',
@@ -23,17 +21,17 @@ export class PeticionesComponent implements OnInit {
   infoFechaSeleccionada: {};
 
   constructor(private authService: AuthService) {
-    this.user = { id:-1,firstName:'',lastName:'',email:'',role:-1,token:'' };
+    this.user = { id:'',firstName:'',lastName:'',email:'',role:-1,token:'', carnet: false };
     this.mostrarInfo =  false;
     this.infoFechaSeleccionada = Date();
   }
 
   ngOnInit(): void {
     this.user = this.authService.getDatosAutenticacion();
-    this.motrarSeleccionarTurno();
+    this.motrarInformacionTurno();
   }
 
-  motrarSeleccionarTurno():void{
+  motrarInformacionTurno():void{
     this.calendarOptions.dateClick = (info) => {
       this.mostrarInfo = true;
       this.infoFechaSeleccionada = info.date.getDay;
@@ -49,6 +47,8 @@ export class FullcalendarC {
     locale:esLocale,
     weekends: false,
     slotDuration:{minutes:15},
+    allDaySlot: false,
+    editable: true,
     slotLabelFormat: { hour: 'numeric', minute: '2-digit', omitZeroMinute: false, hour12: false, meridiem: 'short'},
     dayHeaderFormat: {weekday: 'short', month: 'numeric', day: 'numeric', omitCommas: true},
     nowIndicator: true,
@@ -60,6 +60,6 @@ export class FullcalendarC {
     initialView: 'timeGridWeek',
     slotMinTime: "08:00:00",
     slotMaxTime: "18:00:00",
-    height: '90%'
+    height: '95%'
   };
 }

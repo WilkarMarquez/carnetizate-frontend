@@ -12,7 +12,7 @@ import { BuscarComponent } from './modules/buscar/buscar.component';
 import { EstadisticasComponent } from './modules/estadisticas/estadisticas.component';
 import { PeticionesComponent } from './modules/peticiones/peticiones.component';
 import {DialogModule} from 'primeng/dialog';
-
+import { FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ import {DialogModule} from 'primeng/dialog';
     CommonModule,
     PrivateRoutingModule,
     PrimengSharedModule,
-    DialogModule
+    DialogModule,
+    FormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 

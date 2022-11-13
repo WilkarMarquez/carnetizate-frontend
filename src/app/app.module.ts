@@ -23,7 +23,6 @@ import {FullCalendarModule} from 'primeng/fullcalendar';
     ProgressSpinnerModule,
     HttpClientModule,
     FullCalendarModule
-    
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

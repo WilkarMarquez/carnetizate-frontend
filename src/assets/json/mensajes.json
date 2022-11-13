@@ -2,5 +2,7 @@
     "credencialeIncorrectas":"El código o contraseña ingresado son incorrectos.",
     "codigoIncorrecto":"El código ingresado es incorrecto",
     "contrasenaIncorrecta":"La contraseña ingresada es incorrecta",
-    "errorServidor":"Error de servidor, contactese con Wilkar Márquez."
+    "errorServidor":"Error de servidor, contactese con Wilkar Márquez.",
+    "turnoAgendado":"Su turno ha sido agendado correctamente.",
+    "turnoNoAgendado":"Su turno no se pudo agendar, inténtelo de nuevo."
 }
