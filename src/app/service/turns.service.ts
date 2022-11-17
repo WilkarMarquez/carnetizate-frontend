@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { createTurno } from '../models/createTurno';
 import { environment } from 'src/environments/environment';
+import { recibirTurno } from '../models/recibirTurno';
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,7 @@ export class TurnsService {
     return this.httpClient.post<createTurno>(environment.urlTurns, turno);
   }
 
-  getAllTurn():Observable<any>{
-    return this.httpClient.get<any>(environment.urlTurns);
+  getAllTurn():Observable<recibirTurno[]>{
+    return this.httpClient.get<recibirTurno[]>(environment.urlTurns);
   }
 }

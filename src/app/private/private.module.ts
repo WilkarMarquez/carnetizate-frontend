@@ -13,6 +13,7 @@ import { EstadisticasComponent } from './modules/estadisticas/estadisticas.compo
 import { PeticionesComponent } from './modules/peticiones/peticiones.component';
 import {DialogModule} from 'primeng/dialog';
 import { FormsModule} from '@angular/forms';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { FormsModule} from '@angular/forms';
     PrivateRoutingModule,
     PrimengSharedModule,
     DialogModule,
-    FormsModule
+    FormsModule,
+    FullCalendarModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 

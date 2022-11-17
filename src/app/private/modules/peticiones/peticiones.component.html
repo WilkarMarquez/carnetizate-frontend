@@ -4,10 +4,22 @@
         <full-calendar #peticiones id="peticiones"[options]='calendarOptions'></full-calendar>
     </div>
     <p-dialog [modal]="true" [draggable]="false" [resizable]="false" [(visible)]="mostrarInfo" [dismissableMask]="true" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}">
-        <h3>Peticion del estudiante </h3>
-        <div>
-            <button label="Cancelar" (click)="mostrarInfo=false" class="cancelar">Cancelar</button>
-            <button label="Carnetizate" class="carnetizate">Carnetizate</button>
+        <div class="container-modal">
+            <h5>Información del turno</h5>
+            <div class="informacion">
+                <p>Codigo del turno: {{turnoSeleccionado.code}}</p>
+                <p>Estado:
+                    <span *ngIf="turnoSeleccionado.status_id == 1" style="color: #0183EF;">Reservado </span>
+                    <span *ngIf="turnoSeleccionado.status_id == 2" style="color: #FF9400;">En proceso</span>
+                    <span *ngIf="turnoSeleccionado.status_id == 3" style="color: #829F00;">Terminado </span>
+                    <span *ngIf="turnoSeleccionado.status_id == 4" style="color: #A50400;">Cancelado </span>
+                </p>
+                <p>{{turnoSeleccionado.user_id}}</p>
+            </div>
+            <div class="botones">
+                <button label="Cancelar" (click)="mostrarInfo=false" class="cancelar">Cancelar</button>
+                <button label="Carnetizate" class="carnetizate">Carnetizate</button>
+            </div>
         </div>
     </p-dialog>
 </div>
