@@ -107,19 +107,17 @@ ngOnInit(){
   }
 
   obtenerTurnos(){
-    let turno: any = {};
+    this.events = [];
     this.turnService.getAllTurn().subscribe((res:recibirTurno[]) => {
       res.forEach((element: recibirTurno) => {
+        let turno: any = {};
         turno.end = element.end;
         turno.start = element.start;
+        turno.user_id = element.user_id;
         element.user_id == this.authService.getDatosAutenticacion()?.id ? 
         (turno.color = 'green', turno.title = 'Mi turno')
         : (turno.color = 'red', turno.title = 'No disponible'); 
         this.events.push(turno);
-        // console.log(turno);
-        this.events = [];
-        console.log(this.events);
-        // console.log(res);
       });
       }
     );

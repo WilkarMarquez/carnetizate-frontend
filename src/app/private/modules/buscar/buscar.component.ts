@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TurnsService } from 'src/app/service/turns.service';
 import { recibirTurno } from 'src/app/models/recibirTurno';
+import { userLogin } from 'src/app/models/userLogin';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-buscar',
@@ -10,10 +12,11 @@ import { recibirTurno } from 'src/app/models/recibirTurno';
 export class BuscarComponent implements OnInit {
 
   turnos: recibirTurno[] = [];
+  estudiantes: userLogin[] = [];
   loading: boolean = false;
 
 
-  constructor( private turnsService: TurnsService){ 
+  constructor( private turnsService: TurnsService, private userService:UserService){ 
 
   }
 
@@ -22,18 +25,16 @@ export class BuscarComponent implements OnInit {
   }
 
   cargaDeTurnos(){
-    let turn: any = {};
     this.turnsService.getAllTurn().subscribe(
       (res: recibirTurno[]) => {
-        this.turnos = [];
         res.forEach(element => {
+          let turn: any = {};
           turn.id = element._id;
           turn.code = element.code;
           turn.start = element.start.replace('T', ' ');
           turn.status_id = 
-          console.log(turn);
+          this.turnos.push(turn);
         });
-        this.turnos.push(turn);
       }
       );
   }

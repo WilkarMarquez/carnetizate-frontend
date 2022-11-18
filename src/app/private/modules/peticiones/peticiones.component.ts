@@ -29,8 +29,8 @@ export class PeticionesComponent implements OnInit {
     this.user = { id:'',firstName:'',lastName:'',email:'',role:-1,token:'', carnet: false };
     this.mostrarInfo =  false;
     this.infoFechaSeleccionada = Date();
-    this.obtenerTurnos();
     this.turnoSeleccionado = {};
+    this.obtenerTurnos();
   }
 
   ngOnInit(): void {
@@ -38,7 +38,6 @@ export class PeticionesComponent implements OnInit {
     this.motrarInformacionTurno();
 
     setTimeout(() => {
-      this.peticiones?.getApi().render();
       this.calendarOptions.events = this.events;
     }, 1000);
 
@@ -52,10 +51,10 @@ export class PeticionesComponent implements OnInit {
   }
 
   obtenerTurnos(){
-    let turno: any = {};
     this.events = [];
     this.turnService.getAllTurn().subscribe(res => {
       res.forEach(element => {
+        let turno: any = {};
         turno.id = element._id;
         turno.code = element.code;
         turno.user_id = element.user_id;
@@ -68,6 +67,7 @@ export class PeticionesComponent implements OnInit {
         if(turno.status_id == 4) {turno.color = '#A50400'};
         this.events.push(turno);
       });
+      this.events = res;
       }
     );
   }
