@@ -53,6 +53,7 @@ export class PeticionesComponent implements OnInit {
 
   obtenerTurnos(){
     let turno: any = {};
+    this.events = [];
     this.turnService.getAllTurn().subscribe(res => {
       res.forEach(element => {
         turno.id = element._id;
@@ -78,7 +79,7 @@ export class FullcalendarC {
   public static optionsCalendar: CalendarOptions = {
     locale:esLocale,
     weekends: false,
-    slotDuration:{minutes:15},
+    slotDuration:{minutes:5},
     allDaySlot: false,
     slotLabelFormat: { hour: 'numeric', minute: '2-digit', omitZeroMinute: false, hour12: false, meridiem: 'short'},
     dayHeaderFormat: {weekday: 'short', month: 'numeric', day: 'numeric', omitCommas: true},

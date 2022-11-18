@@ -44,7 +44,7 @@ export class MenuUsuarioService {
         label:'Buscar',
         routerLink: ["/user/buscar"],
         visible: this.seguridadService.mostrarOpcion(RolEnum.Auxiliar),
-        icon: 'fas fa-solid fa-magnifying-glass icono'
+        icon: 'fas fa-solid fa-list icono'
       },
       {
         label:'Informes',

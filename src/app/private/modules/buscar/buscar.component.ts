@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { userLogin } from 'src/app/models/userLogin';
-import { AuthService } from 'src/app/service/autentication/auth.service';
 import { TurnsService } from 'src/app/service/turns.service';
 import { recibirTurno } from 'src/app/models/recibirTurno';
-import { elementClosest } from '@fullcalendar/common';
 
 @Component({
   selector: 'app-buscar',
@@ -22,19 +19,19 @@ export class BuscarComponent implements OnInit {
 
   ngOnInit(){ 
     this.cargaDeTurnos();
-    
   }
 
   cargaDeTurnos(){
     let turn: any = {};
     this.turnsService.getAllTurn().subscribe(
       (res: recibirTurno[]) => {
+        this.turnos = [];
         res.forEach(element => {
           turn.id = element._id;
           turn.code = element.code;
-          turn.user_id = element.user_id;
-          turn.end = element.end;
-          turn.start = element.start;  
+          turn.start = element.start.replace('T', ' ');
+          turn.status_id = 
+          console.log(turn);
         });
         this.turnos.push(turn);
       }

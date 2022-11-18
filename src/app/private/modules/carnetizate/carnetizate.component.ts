@@ -29,7 +29,7 @@ export class CarnetizateComponent implements OnInit{
   infoFechaSeleccionada: Date = new Date();
   codigoDePago: string;
   timeQueue: number = 5;
-  public events:recibirTurno [] = [];
+  public events:recibirTurno [];
 
 
   constructor(private authService: AuthService, 
@@ -43,6 +43,7 @@ export class CarnetizateComponent implements OnInit{
     this.infoFechaSeleccionada = new Date();
     this.role = this.authService.getRol();
     this.codigoDePago = '';
+    this.events = [];
     this.obtenerTurnos();
   }
   
@@ -77,7 +78,6 @@ ngOnInit(){
     this.calendarOptions.slotDuration = {minutes: this.timeQueue};
     
     setTimeout(() => {
-      this.calendar?.getApi().render();
       this.calendarOptions.events = this.events;
     }, 1000);
     
@@ -92,13 +92,13 @@ ngOnInit(){
         this.leyenda = "Tiene un turno en espera, no puede agendar otro."
       }else if(this.events.some(e => e.start == info.date.toISOString())){
         this.mostrarDialogo = true;
-        this.leyenda = "El turno se encuentra ocupado, por favor, seleccione otro."
-      }else if(info.date.getHours() >= 12 && info.date.getHours() < 14){
-        this.mostrarDialogo = true;
-        this.leyenda = "Servicio no disponible entre las 12PM Y 2PM."
+        this.leyenda = "El turno se encuentra ocupado, por favor, eleccione otro."
       }else if(info.date.valueOf() < now.valueOf()){
         this.mostrarDialogo = true;
         this.leyenda = "No puede seleccionar un turno de una fecha pasada."
+      }else if(info.date.getHours() >= 12 && info.date.getHours() < 14){
+        this.mostrarDialogo = true;
+        this.leyenda = "Servicio no disponible entre las 12PM Y 2PM."
       }else {
         this.mostrarInfo = true;
         this.infoFechaSeleccionada = info.date;
@@ -108,15 +108,18 @@ ngOnInit(){
 
   obtenerTurnos(){
     let turno: any = {};
-    this.turnService.getAllTurn().subscribe(res => {
-      res.forEach(element => {
-        turno.user_id = element.user_id;
+    this.turnService.getAllTurn().subscribe((res:recibirTurno[]) => {
+      res.forEach((element: recibirTurno) => {
         turno.end = element.end;
         turno.start = element.start;
         element.user_id == this.authService.getDatosAutenticacion()?.id ? 
-          (turno.color = 'green', turno.title = 'Mi turno')
-          : (turno.color = 'red', turno.title = 'No disponible'); 
+        (turno.color = 'green', turno.title = 'Mi turno')
+        : (turno.color = 'red', turno.title = 'No disponible'); 
         this.events.push(turno);
+        // console.log(turno);
+        this.events = [];
+        console.log(this.events);
+        // console.log(res);
       });
       }
     );

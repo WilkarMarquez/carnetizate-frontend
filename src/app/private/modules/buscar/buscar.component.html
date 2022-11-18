@@ -1,24 +1,33 @@
 <div class="card">
-    <h5>Multiple Columns</h5>
-    <p>Use metakey to add a column to the sort selection.</p>
-
+    <h5>Busqueda de peticiones</h5>
     <p-table [value]="turnos" sortMode="multiple" [tableStyle]="{'min-width': '60rem'}">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text"  placeholder="Search keyword" />
+                </span>
+            </div>
+        </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="code" style="width:20%">Codigo de turno <p-sortIcon field="code"></p-sortIcon></th>
-                <th pSortableColumn="name" style="width:20%">Name <p-sortIcon field="name"></p-sortIcon></th>
-                <th pSortableColumn="category" style="width:20%">Category <p-sortIcon field="category"></p-sortIcon></th>
-                <th pSortableColumn="quantity" style="width:20%">Quantity <p-sortIcon field="quantity"></p-sortIcon></th>
-                <th pSortableColumn="price" style="width:20%">Price <p-sortIcon field="price"></p-sortIcon></th>
+                <th pSortableColumn="code" style="width:20%">Codigo de turno<p-sortIcon field="code"></p-sortIcon></th>
+                <th pSortableColumn="username" style="width:20%">Código de estudiante<p-sortIcon field="username"></p-sortIcon></th>
+                <th pSortableColumn="name" style="width:20%">Nombre<p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="status_id" style="width:20%">Estado<p-sortIcon field="status_id"></p-sortIcon></th>
+                <th pSortableColumn="start" style="width:20%">Fecha<p-sortIcon field="start"></p-sortIcon></th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-product>
+        <ng-template pTemplate="body" let-turnos>
             <tr>
-                <td>1</td>
-                <td>!1</td>
-                <td>!</td>
-                <td>1</td>
-                <td>1</td>
+                <td>{{turnos.code}}</td>
+                <td>{{turnos.code}}</td>
+                <td>{{turnos.start}}</td>
+                <td *ngIf="turnos.status_id == 1" style="color: #0183EF;">Reservado </td>
+                <td *ngIf="turnos.status_id == 2" style="color: #FF9400;">En proceso</td>
+                <td *ngIf="turnos.status_id == 3" style="color: #829F00;">Terminado </td>
+                <td *ngIf="turnos.status_id == 4" style="color: #A50400;">Cancelado </td>
+                <td>{{turnos.start}}</td>
             </tr>
         </ng-template>
     </p-table>
