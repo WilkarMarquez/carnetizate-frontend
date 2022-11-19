@@ -1,11 +1,13 @@
 <div class="card">
     <h5>Busqueda de peticiones</h5>
-    <p-table [value]="turnos" sortMode="multiple" [tableStyle]="{'min-width': '60rem'}">
+    <p-table #dt1 [value]="turnos" sortMode="multiple" styleClass="p-datatable-sm text-2xl"
+    [globalFilterFields]="['code','username','name','status_id']" [rows]="10" [showCurrentPageReport]="true"  [totalRecords]="turnos.length"
+    [paginator]="true" currentPageReportTemplate="Mostrando de {first} a {last} turnos de {totalRecords}">
         <ng-template pTemplate="caption">
             <div class="flex">
                 <span class="p-input-icon-left ml-auto">
-                    <i class="pi pi-search"></i>
-                    <input pInputText type="text"  placeholder="Search keyword" />
+                    <i class="pi pi-search text-xl"></i>
+                    <input pInputText type="text" (input)="dt1.filterGlobal($any($event.target).value, 'contains')" placeholder="Ingrese busqueda" />
                 </span>
             </div>
         </ng-template>
@@ -21,13 +23,13 @@
         <ng-template pTemplate="body" let-turnos>
             <tr>
                 <td>{{turnos.code}}</td>
-                <td>{{turnos.code}}</td>
-                <td>{{turnos.start}}</td>
-                <td *ngIf="turnos.status_id == 1" style="color: #0183EF;">Reservado </td>
-                <td *ngIf="turnos.status_id == 2" style="color: #FF9400;">En proceso</td>
-                <td *ngIf="turnos.status_id == 3" style="color: #829F00;">Terminado </td>
-                <td *ngIf="turnos.status_id == 4" style="color: #A50400;">Cancelado </td>
-                <td>{{turnos.start}}</td>
+                <td>{{turnos.username}}</td>
+                <td>{{turnos.name}}</td>
+                <td *ngIf="turnos.status_id == 1" style="color: #0183EF; font-weight: 700;">Reservado </td>
+                <td *ngIf="turnos.status_id == 2" style="color: #FF9400; font-weight: 700;">En proceso</td>
+                <td *ngIf="turnos.status_id == 3" style="color: #829F00; font-weight: 700;">Terminado </td>
+                <td *ngIf="turnos.status_id == 4" style="color: #A50400; font-weight: 700;">Cancelado </td>
+                <td>{{turnos.start | date:'medium'}}</td>
             </tr>
         </ng-template>
     </p-table>

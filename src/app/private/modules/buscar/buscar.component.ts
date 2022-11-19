@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TurnsService } from 'src/app/service/turns.service';
 import { recibirTurno } from 'src/app/models/recibirTurno';
-import { userLogin } from 'src/app/models/userLogin';
 import { UserService } from 'src/app/service/user.service';
+import { LoadingService } from 'src/app/service/loading.service';
 
 @Component({
   selector: 'app-buscar',
@@ -12,16 +12,27 @@ import { UserService } from 'src/app/service/user.service';
 export class BuscarComponent implements OnInit {
 
   turnos: recibirTurno[] = [];
-  estudiantes: userLogin[] = [];
+  estudiantes: any[] = [];
   loading: boolean = false;
 
 
-  constructor( private turnsService: TurnsService, private userService:UserService){ 
-
+  constructor(private loadingService:LoadingService, private turnsService: TurnsService, private userService:UserService){
+    this.loadingService.mostrarCargando();
   }
 
   ngOnInit(){ 
-    this.cargaDeTurnos();
+    this.estudiantes = this.infoEstudiantes();
+    setTimeout(() => {
+      this.turnos = this.cargaDeTurnos();
+      this.loadingService.ocultarCargando();
+    }, 1000);
+  }
+
+  infoEstudiantes(){
+    this.userService.obtenerUsuarios().subscribe(res => {
+      this.estudiantes = res;
+    });
+    return this.estudiantes;
   }
 
   cargaDeTurnos(){
@@ -30,12 +41,20 @@ export class BuscarComponent implements OnInit {
         res.forEach(element => {
           let turn: any = {};
           turn.id = element._id;
+          turn.user_id = element.user_id;
           turn.code = element.code;
-          turn.start = element.start.replace('T', ' ');
-          turn.status_id = 
+          turn.start = new Date(element.start);
+          turn.status_id = element.status_id;
+          this.estudiantes.find(e => {
+            if(e._id == turn.user_id){
+              turn.username = e.username;
+              turn.name = e.firts_name + ' ' + e.last_name;
+            }
+          });
           this.turnos.push(turn);
         });
       }
-      );
+    );
+    return this.turnos;
   }
 }

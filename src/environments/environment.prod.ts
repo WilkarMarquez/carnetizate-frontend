@@ -5,5 +5,5 @@ export const environment = {
   urlEntities:   'https://youturn-production.up.railway.app/api/entities/',
   urlTurns:      'https://youturn-production.up.railway.app/api/turns/',
   urlUsers:      'https://youturn-production.up.railway.app/api/users/',
-  urlQueue:      'https://youturn-production.up.railway.app/api/queue' 
+  urlQueue:      'https://youturn-production.up.railway.app/api/queue/' 
 };

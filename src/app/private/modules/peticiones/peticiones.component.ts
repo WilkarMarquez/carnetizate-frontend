@@ -3,11 +3,11 @@ import { CalendarOptions, FullCalendarComponent } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin  from '@fullcalendar/timegrid';
 import esLocale  from '@fullcalendar/core/locales/es';
-import { AuthService } from 'src/app/service/autentication/auth.service';
-import { userLogin } from 'src/app/models/userLogin';
 import interactionPlugin from '@fullcalendar/interaction';
 import { TurnsService } from 'src/app/service/turns.service';
 import { recibirTurno } from 'src/app/models/recibirTurno';
+import { UserService } from 'src/app/service/user.service';
+import { LoadingService } from 'src/app/service/loading.service';
 
 
 @Component({
@@ -19,35 +19,48 @@ export class PeticionesComponent implements OnInit {
 
   calendarOptions: CalendarOptions = Object.assign({},FullcalendarC.optionsCalendar);
   @ViewChild('peticiones') peticiones:FullCalendarComponent | undefined;
-  user: userLogin | null;
   mostrarInfo: boolean;
   infoFechaSeleccionada: {};
   events: recibirTurno[] = [];
   turnoSeleccionado: any;
 
-  constructor(private authService: AuthService, private turnService: TurnsService) {
-    this.user = { id:'',firstName:'',lastName:'',email:'',role:-1,token:'', carnet: false };
+  constructor(private loadingService: LoadingService ,private turnService: TurnsService, private userService: UserService) {
     this.mostrarInfo =  false;
     this.infoFechaSeleccionada = Date();
     this.turnoSeleccionado = {};
+    this.loadingService.mostrarCargando();
     this.obtenerTurnos();
   }
 
   ngOnInit(): void {
-    this.user = this.authService.getDatosAutenticacion();
     this.motrarInformacionTurno();
-
     setTimeout(() => {
       this.calendarOptions.events = this.events;
+      this.loadingService.ocultarCargando();
     }, 1000);
-
   }
 
   motrarInformacionTurno():void{
     this.calendarOptions.eventClick = (info) => {
-      this.turnoSeleccionado = info.event.extendedProps
-      this.mostrarInfo = true;
+      this.loadingService.mostrarCargando();
+      this.userService.obtenerUsuarios().subscribe((res: any) =>{
+        res.forEach((iter:any) =>{
+            if(info.event.extendedProps['user_id'] == iter._id){
+              info.event.setExtendedProp("name", iter.firts_name + ' ' + iter.last_name);
+              info.event.setExtendedProp("username", iter.username);
+              this.turnoSeleccionado = info.event.extendedProps;
+              this.loadingService.ocultarCargando();
+              this.mostrarInfo = true;
+              return;
+            }
+          }
+          );
+        });
     }
+  }
+
+  cambiarEstado(){
+    
   }
 
   obtenerTurnos(){
@@ -71,7 +84,6 @@ export class PeticionesComponent implements OnInit {
       }
     );
   }
-
 }
   
 export class FullcalendarC {

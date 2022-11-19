@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { userLogin } from "src/app/models/userLogin";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
@@ -12,8 +12,8 @@ export class UserService {
 
   constructor(private httpClient:HttpClient) { }
 
-  obtenerUsuario(user: string):Observable<userLogin[]>{
-    return this.httpClient.get<userLogin[]>(environment.urlUsers);
+  obtenerUsuarios(user_id? :string):Observable<userLogin[]>{
+    typeof user_id == undefined? user_id = '': user_id = user_id;
+    return this.httpClient.post<userLogin[]>(environment.urlUsers+'all', user_id);
   }
-
 }
