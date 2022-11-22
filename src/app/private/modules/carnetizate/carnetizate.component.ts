@@ -135,7 +135,8 @@ ngOnInit(){
     let turnSelected: createTurno = {queue_id:'',user_id:'',start: new Date, isPay: false};
     
     turnSelected.user_id = this.authService.getDatosAutenticacion()?.id;
-    (this.user?.carnet)? turnSelected.queue_id = "6370298856bec1914d5c10e9": turnSelected.queue_id = "636ffae407758b383399bca1";
+    (this.user?.carnet)? (turnSelected.queue_id = "6370298856bec1914d5c10e9", turnSelected.isPay = true)
+    : turnSelected.queue_id = "636ffae407758b383399bca1", turnSelected.isPay = false;
     /**
      * cola de primera vez: "636ffae407758b383399bca1"
      * cola de renovar: "370298856bec1914d5c10e9""

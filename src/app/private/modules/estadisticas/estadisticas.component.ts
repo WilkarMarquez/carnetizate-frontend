@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TurnsService } from 'src/app/service/turns.service';
+import { LoadingService } from 'src/app/service/loading.service';
+import { recibirTurno } from 'src/app/models/recibirTurno';
 
 @Component({
   selector: 'app-estadisticas',
@@ -8,9 +10,13 @@ import { TurnsService } from 'src/app/service/turns.service';
 })
 export class EstadisticasComponent implements OnInit {
 
-  turnos: any [];
+  turnos: recibirTurno [];
   dataTorta: any;
-  constructor(private turnService: TurnsService) { 
+  primeraVez: number = 0;
+  numTurnosManana:number = 0;
+  renovar = 0;
+  constructor(private loadingService:LoadingService, private turnService: TurnsService) { 
+    this.loadingService.mostrarCargando();
     this.turnos = [];
   }
 
@@ -20,32 +26,39 @@ export class EstadisticasComponent implements OnInit {
         this.turnos = res;
       }
     );
-
-    this.cargarTorta();
+      setTimeout(() => {
+        this.cargarTorta();
+        this.turnosManana();
+        this.loadingService.ocultarCargando();
+      }, 1000);
   }
 
   turnosManana(){
     this.turnos.forEach(iter => {
-      
+      console.log(iter);
+      if(new Date(iter.start).getDay() == Date.now()){
+        this.numTurnosManana ++;
+      } 
     });
   }
 
   cargarTorta(){
     this.dataTorta = {
-      labels: ['A','B','C','D'],
+      labels: ['Reservado','En proceso','Terminado','Cancelado'],
       datasets: [
         {
           data: [300, 50, 100,10],
           backgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56",
-            "#F00"
+            "#0183EF",
+            "#FF9400",
+            "#829F00",
+            "#A50400"
           ],
           hoverBackgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56","#F"
+            "#0183EF",
+            "#FF9400",
+            "#829F00",
+            "#A50400"
           ]
         }
       ]

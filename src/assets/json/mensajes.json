@@ -4,5 +4,6 @@
     "contrasenaIncorrecta":"La contraseña ingresada es incorrecta",
     "errorServidor":"Error de servidor, contactese con Wilkar Márquez.",
     "turnoAgendado":"Su turno ha sido agendado correctamente.",
-    "turnoNoAgendado":"Su turno no se pudo agendar, inténtelo de nuevo."
+    "turnoNoAgendado":"Su turno no se pudo agendar, inténtelo de nuevo.",
+    "estadoTurno":"El estado del turno ha sido actualizado."
 }

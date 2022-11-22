@@ -8,7 +8,7 @@ import { TurnsService } from 'src/app/service/turns.service';
 import { recibirTurno } from 'src/app/models/recibirTurno';
 import { UserService } from 'src/app/service/user.service';
 import { LoadingService } from 'src/app/service/loading.service';
-
+import { MensajesService } from 'src/app/service/mensajes.service';
 
 @Component({
   selector: 'app-peticiones',
@@ -23,7 +23,7 @@ export class PeticionesComponent implements OnInit {
   events: recibirTurno[] = [];
   turnoSeleccionado: any;
 
-  constructor(private loadingService: LoadingService ,private turnService: TurnsService, private userService: UserService) {
+  constructor(private mensajeService:MensajesService, private loadingService: LoadingService ,private turnService: TurnsService, private userService: UserService) {
     this.mostrarInfo =  false;
     this.infoFechaSeleccionada = Date();
     this.turnoSeleccionado = {};
@@ -83,11 +83,13 @@ export class PeticionesComponent implements OnInit {
     if(turno.status_id == 4){
       this.turnService.cambiarEstado({turn_id: turno._id, status_id: 2}).subscribe(res => {
         this.loadingService.ocultarCargando();
+        this.mensajeService.agregarMensajeNotificacion({resumen:"estadoTurno", severidad: "success"});
         this.mostrarInfo = false;
       });
     }else{
       this.turnService.cambiarEstado({turn_id: turno._id, status_id: 4}).subscribe(res => {
           this.loadingService.ocultarCargando();
+          this.mensajeService.agregarMensajeNotificacion({resumen:"estadoTurno", severidad: "success"});
           this.mostrarInfo = false;
         }
       );
@@ -99,11 +101,13 @@ export class PeticionesComponent implements OnInit {
     if(turno.status_id == 1){
       this.turnService.cambiarEstado({turn_id: turno._id, status_id: 2}).subscribe(res => {
         this.loadingService.ocultarCargando();
+        this.mensajeService.agregarMensajeNotificacion({resumen:"estadoTurno", severidad: "success"});
         this.mostrarInfo = false;
       });
     }else if(turno.status_id == 2){
       this.turnService.cambiarEstado({turn_id: turno._id, status_id: 3}).subscribe(res => {
         this.loadingService.ocultarCargando();
+        this.mensajeService.agregarMensajeNotificacion({resumen:"estadoTurno", severidad: "success"});
         this.mostrarInfo = false;  
       });
     }
@@ -114,7 +118,7 @@ export class PeticionesComponent implements OnInit {
     this.turnService.getAllTurn().subscribe(res => {
       res.forEach(element => {
         let turno: any = {};
-        turno.id = element._id;
+        turno._id = element._id;
         turno.code = element.code;
         turno.user_id = element.user_id;
         turno.end = element.end;
