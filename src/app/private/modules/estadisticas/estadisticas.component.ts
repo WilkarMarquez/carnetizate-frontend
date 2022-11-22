@@ -24,6 +24,12 @@ export class EstadisticasComponent implements OnInit {
     this.cargarTorta();
   }
 
+  turnosManana(){
+    this.turnos.forEach(iter => {
+      if
+    });
+  }
+
   cargarTorta(){
     this.dataTorta = {
       labels: ['A','B','C','D'],
