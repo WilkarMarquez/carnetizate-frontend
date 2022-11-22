@@ -23,7 +23,7 @@ import {CheckboxModule} from 'primeng/checkbox';
 import {InputNumberModule} from 'primeng/inputnumber';
 import {MessagesModule} from 'primeng/messages';
 import { TagModule } from 'primeng/tag';
-
+import {ChartModule} from 'primeng/chart';
 
 @NgModule({
   declarations: [],
@@ -53,7 +53,8 @@ import { TagModule } from 'primeng/tag';
     CheckboxModule,
     InputNumberModule,
     MessagesModule,
-    TagModule
+    TagModule,
+    ChartModule
   ]
 })
 export class PrimengSharedModule { }  

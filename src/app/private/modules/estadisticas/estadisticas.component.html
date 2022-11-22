@@ -1,1 +1,14 @@
-<p>estadisticas works!</p>
+<div class="container">
+    <h5>Estadísticas sobre los turnos</h5>
+    <div class="graficos">
+        <div class="card">
+            <h6>Total de turnos en la historia</h6>
+            <p id="totalTurnos">{{turnos.length}}</p>
+        </div>
+        <div class="card">
+            <h6>Estado de los turnos de hoy</h6>
+            <p-chart type="doughnut" [data]="dataTorta" [style]="{'width': '40rem'}"></p-chart>
+            <p-chart type="doughnut" [data]="dataTorta" [style]="{'width': '40rem'}"></p-chart>
+        </div>
+    </div>
+</div>
