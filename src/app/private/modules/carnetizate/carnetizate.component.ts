@@ -44,6 +44,7 @@ export class CarnetizateComponent implements OnInit{
     this.role = this.authService.getRol();
     this.codigoDePago = '';
     this.events = [];
+    loader.mostrarCargando();
     this.obtenerTurnos();
   }
   
@@ -79,6 +80,7 @@ ngOnInit(){
     
     setTimeout(() => {
       this.calendarOptions.events = this.events;
+      this.loader.ocultarCargando();
     }, 1000);
     
     
@@ -87,7 +89,11 @@ ngOnInit(){
   motrarSeleccionarTurno():void{
     this.calendarOptions.dateClick = (info) => {
       let now = Date.now();  
-      if(this.events.some(e => e.user_id == this.authService.getDatosAutenticacion()?.id)){
+      if(this.events.some(e => {
+              e.user_id == this.authService.getDatosAutenticacion()?.id
+              && e.status_id !=3
+            }
+        )){
         this.mostrarDialogo = true;
         this.leyenda = "Tiene un turno en espera, no puede agendar otro."
       }else if(this.events.some(e => e.start == info.date.toISOString())){
@@ -114,6 +120,7 @@ ngOnInit(){
         turno.end = element.end;
         turno.start = element.start;
         turno.user_id = element.user_id;
+        turno.status_id = element.status_id;
         element.user_id == this.authService.getDatosAutenticacion()?.id ? 
         (turno.color = 'green', turno.title = 'Mi turno')
         : (turno.color = 'red', turno.title = 'No disponible'); 

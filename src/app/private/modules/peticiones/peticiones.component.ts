@@ -17,7 +17,6 @@ import { LoadingService } from 'src/app/service/loading.service';
 })
 export class PeticionesComponent implements OnInit {
 
-  calendarOptions: CalendarOptions = Object.assign({},FullcalendarC.optionsCalendar);
   @ViewChild('peticiones') peticiones:FullCalendarComponent | undefined;
   mostrarInfo: boolean;
   infoFechaSeleccionada: {};
@@ -31,6 +30,27 @@ export class PeticionesComponent implements OnInit {
     this.loadingService.mostrarCargando();
     this.obtenerTurnos();
   }
+
+  calendarOptions: CalendarOptions = {
+    locale:esLocale,
+    weekends: false,
+    slotDuration:{minutes:5},
+    allDaySlot: false,
+    slotLabelFormat: { hour: 'numeric', minute: '2-digit', omitZeroMinute: false, hour12: false, meridiem: 'short'},
+    dayHeaderFormat: {weekday: 'short', month: 'numeric', day: 'numeric', omitCommas: true},
+    nowIndicator: true,
+    firstDay: 1,
+    progressiveEventRendering: true,
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+    },
+    plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+    initialView: 'timeGridWeek',
+    slotMinTime: "08:00:00",
+    slotMaxTime: "18:00:00",
+    height: '95%'
+  };
 
   ngOnInit(): void {
     this.motrarInformacionTurno();
@@ -59,8 +79,35 @@ export class PeticionesComponent implements OnInit {
     }
   }
 
-  cambiarEstado(){
-    
+  cancelarReanudarTurno(turno: any){
+    this.loadingService.mostrarCargando();
+    if(turno.status_id == 4){
+      this.turnService.cambiarEstado({turn_id: turno._id, status_id: 2}).subscribe(res => {
+        this.loadingService.ocultarCargando();
+        this.mostrarInfo = false;
+      });
+    }else{
+      this.turnService.cambiarEstado({turn_id: turno._id, status_id: 4}).subscribe(res => {
+          this.loadingService.ocultarCargando();
+          this.mostrarInfo = false;
+        }
+      );
+    }
+  }
+
+  cambiarEstado(turno: any){
+    this.loadingService.mostrarCargando();
+    if(turno.status_id == 1){
+      this.turnService.cambiarEstado({turn_id: turno._id, status_id: 2}).subscribe(res => {
+        this.loadingService.ocultarCargando();
+        this.mostrarInfo = false;
+      });
+    }else if(turno.status_id == 2){
+      this.turnService.cambiarEstado({turn_id: turno._id, status_id: 3}).subscribe(res => {
+        this.loadingService.ocultarCargando();
+        this.mostrarInfo = false;  
+      });
+    }
   }
 
   obtenerTurnos(){
@@ -74,36 +121,14 @@ export class PeticionesComponent implements OnInit {
         turno.end = element.end;
         turno.start = element.start;
         turno.status_id = element.status_id;
-        if(turno.status_id == 1) {turno.color = '#0183EF'};
-        if(turno.status_id == 2) {turno.color = '#FF9400'};
-        if(turno.status_id == 3) {turno.color = '#829F00'};
-        if(turno.status_id == 4) {turno.color = '#A50400'};
+        if(turno.status_id == 1) turno.color = 'black';
+        if(turno.status_id == 2) turno.color = '#FF9400';
+        if(turno.status_id == 3) turno.color = '#829F00';
+        if(turno.status_id == 4) turno.color = 'red';
         this.events.push(turno);
       });
       this.events = res;
       }
     );
   }
-}
-  
-export class FullcalendarC {
-
-  public static optionsCalendar: CalendarOptions = {
-    locale:esLocale,
-    weekends: false,
-    slotDuration:{minutes:5},
-    allDaySlot: false,
-    slotLabelFormat: { hour: 'numeric', minute: '2-digit', omitZeroMinute: false, hour12: false, meridiem: 'short'},
-    dayHeaderFormat: {weekday: 'short', month: 'numeric', day: 'numeric', omitCommas: true},
-    nowIndicator: true,
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-    },
-    plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-    initialView: 'timeGridWeek',
-    slotMinTime: "08:00:00",
-    slotMaxTime: "18:00:00",
-    height: '95%'
-  };
 }

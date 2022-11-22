@@ -9,14 +9,9 @@
         <h3>
             Desea agendar un turno para carnetizarte el {{infoFechaSeleccionada.getDate()}} de {{infoFechaSeleccionada.toLocaleString('default', { month: 'long' })}} a las {{infoFechaSeleccionada.getHours()}}:{{infoFechaSeleccionada.getMinutes()}}?
         </h3>
-        <div class="field" *ngIf="user?.carnet">
-            <label for="codigo-pago" class="block">Ingrese el codigo de tu recibo de pago.</label>
-            <input placeholder="Código de pago" type="text" [(ngModel)]="codigoDePago" pInputText />
-            <span *ngIf="!(codigoDePago.length > 7)" class="p-error block">Ingrese un codigo de págo mayor a 7 carácteres.</span>
-        </div>
         <div class="container-button">
             <button label="Cancelar" (click) = "mostrarInfo=false" class="cancelar">Cancelar</button>
-            <button label="Carnetizate" [disabled] = "(!(codigoDePago.length > 7) && user?.carnet)" (click) = "crearTurno()" class="carnetizate">Carnetizate</button>
+            <button label="Carnetizate" (click) = "crearTurno()" class="carnetizate">Carnetizate</button>
         </div>
     </p-dialog>
 

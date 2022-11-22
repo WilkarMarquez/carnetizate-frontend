@@ -49,21 +49,57 @@ h5{
     height: 100%;
 }
 
+.botones{
+    margin-bottom: 1rem;
+}
+
 button{
     border: 0.1rem solid $primary-color;
+    background-color: $primary-background-color;
     font-size: $font-large;
     font-weight: 500;
     width: 12rem;
     height: 3.6rem;
+    font-family: $font-family;
+    cursor: pointer;
+}
+
+#boton-2{
+    margin-right: 2rem;
+}
+
+.cancelar{
+    color: $primary-background-color;
+    border-color: $primary-red-color;
+    background-color: $primary-red-color;
+}
+
+.carnetizar{
+    color: $seconday-light-color;
+    border-color: $seconday-light-color;
+    font-weight: 700;
+}
+
+.terminar{
+    color: $green-05-color;
+    border-color: $green-05-color;
+    font-weight: 700;
+}
+
+.reanudar{
+    border-color: $green-05-color;
+    background-color: $green-05-color;
+    color: $primary-background-color;
+}
+
+.disabled{
+    color: $disabled-gray-color;
+    border-color: $disabled-gray-color;
+    background-color: $primary-background-color;
+    cursor: default;
 }
 
 .salir{
     color: $primary-color ;
-    background-color: $primary-background-color;
     margin-right: 2rem;
-}
-
-.carnetizate{
-    color: $primary-background-color;
-    background-color: $primary-color;
 }

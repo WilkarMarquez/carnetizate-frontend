@@ -19,7 +19,16 @@
             </div>
             <div class="botones">
                 <button label="Cancelar" (click)="mostrarInfo=false" class="salir">Salir</button>
-                <button label="Carnetizate" (click)="cambiarEstado()" class="carnetizate">Carnetizate</button>
+                <button id="boton-2" (click)="cancelarReanudarTurno(turnoSeleccionado)" label="Cancelar" [ngClass]="{'cancelar': turnoSeleccionado.status_id != 4, 'disabled':turnoSeleccionado.status_id == 3, 'reanudar': turnoSeleccionado.status_id == 4}" [disabled]="turnoSeleccionado.status_id == 3">
+                    <span *ngIf="turnoSeleccionado.status_id == 4">Reanudar</span>
+                    <span *ngIf="turnoSeleccionado.status_id != 4">cancelar</span>
+                </button>
+                <button [disabled]="turnoSeleccionado.status_id == 3 || turnoSeleccionado.status_id == 4" label="Carnetizate" (click)="cambiarEstado(turnoSeleccionado)" [ngClass]="{'carnetizar': turnoSeleccionado.status_id == 1, 'terminar': turnoSeleccionado.status_id == 2, 'disabled':turnoSeleccionado.status_id == 3 || turnoSeleccionado.status_id == 4}">
+                    <span *ngIf="turnoSeleccionado.status_id == 1">Carnetizar</span>
+                    <span *ngIf="turnoSeleccionado.status_id == 2">Terminar</span>
+                    <span *ngIf="turnoSeleccionado.status_id == 3">Carnetizado</span>
+                    <span *ngIf="turnoSeleccionado.status_id == 4">Cancelado</span>
+                </button>
             </div>
         </div>
     </p-dialog>

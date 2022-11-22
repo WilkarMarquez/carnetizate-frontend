@@ -1,1 +1,29 @@
-<p>informacion works!</p>
+<div class="card">
+    <div *ngIf="turnos.length > 0">
+        <h5>Tu historial de turnos</h5>
+        <p-table #dt1 [value]="turnos" sortMode="multiple" styleClass="p-datatable-sm text-2xl" [rows]="10">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="code" style="width:20%">Codigo de turno<p-sortIcon field="code"></p-sortIcon></th>
+                    <th pSortableColumn="status_id" style="width:20%">Estado<p-sortIcon field="status_id"></p-sortIcon></th>
+                    <th pSortableColumn="tipo" style="width:20%">Tipo<p-sortIcon field="tipo"></p-sortIcon></th>
+                    <th pSortableColumn="start" style="width:20%">Fecha<p-sortIcon field="start"></p-sortIcon></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-turnos>
+                <tr>
+                    <td>{{turnos.code}}</td>
+                    <td *ngIf="turnos.status_id == 1" style="color: #0183EF; font-weight: 700;">Reservado </td>
+                    <td *ngIf="turnos.status_id == 2" style="color: #FF9400; font-weight: 700;">En proceso</td>
+                    <td *ngIf="turnos.status_id == 3" style="color: #829F00; font-weight: 700;">Terminado </td>
+                    <td *ngIf="turnos.status_id == 4" style="color: #A50400; font-weight: 700;">Cancelado </td>
+                    <td style="font-weight: 700;">{{turnos.tipo}}</td>
+                    <td>{{turnos.start | date:'medium'}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    <div *ngIf="turnos.length == 0">
+        <h5>No tienes turnos agendados, si tu carnet se ha perdido o averiado de invitamos a carnetizarte.</h5>
+    </div>
+</div>
