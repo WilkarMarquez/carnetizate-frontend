@@ -40,7 +40,6 @@ export class PeticionesComponent implements OnInit {
     dayHeaderFormat: {weekday: 'short', month: 'numeric', day: 'numeric', omitCommas: true},
     nowIndicator: true,
     firstDay: 1,
-    progressiveEventRendering: true,
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
@@ -121,13 +120,12 @@ export class PeticionesComponent implements OnInit {
         turno.end = element.end;
         turno.start = element.start;
         turno.status_id = element.status_id;
-        if(turno.status_id == 1) turno.color = 'black';
+        if(turno.status_id == 1) turno.color = '#0183EF';
         if(turno.status_id == 2) turno.color = '#FF9400';
         if(turno.status_id == 3) turno.color = '#829F00';
-        if(turno.status_id == 4) turno.color = 'red';
+        if(turno.status_id == 4) turno.color = '#A50400';
         this.events.push(turno);
       });
-      this.events = res;
       }
     );
   }
