@@ -26,7 +26,7 @@ export class EstadisticasComponent implements OnInit {
 
   turnosManana(){
     this.turnos.forEach(iter => {
-      if
+      
     });
   }
 
