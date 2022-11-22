@@ -3,7 +3,6 @@ import { TurnsService } from 'src/app/service/turns.service';
 import { recibirTurno } from 'src/app/models/recibirTurno';
 import { LoadingService } from 'src/app/service/loading.service';
 import { AuthService } from 'src/app/service/autentication/auth.service';
-import { userLogin } from 'src/app/models/userLogin';
 
 @Component({
   selector: 'app-informacion',
@@ -15,15 +14,16 @@ export class InformacionComponent implements OnInit {
   loading: boolean = false;
   
   turnos: recibirTurno[] = [];
+  muestralo: boolean;
   user: string | undefined;
 
   constructor(private loadingService:LoadingService, private turnsService: TurnsService, private authService:AuthService){
+    this.muestralo = false;
     this.loadingService.mostrarCargando();
   }
 
   ngOnInit(){ 
     this.user = this.authService.getDatosAutenticacion()?.id;
-    
     this.turnsService.getAllTurn()
       .subscribe(
         (res)=>{
@@ -36,7 +36,7 @@ export class InformacionComponent implements OnInit {
               turn.status_id = element.status_id;
               this.turnos.push(turn);
             }
-            
+            this.muestralo = true;
           });
           this.loadingService.ocultarCargando();
         }
