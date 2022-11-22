@@ -132,19 +132,16 @@ ngOnInit(){
 
   crearTurno(){
     this.loader.mostrarCargando();
-    let turnSelected: createTurno = {queue_id:'',user_id:'',start: new Date, isPay: false};
+    let turnSelected: createTurno = {queue_id:'',user_id:'',start: new Date, ispay: false};
     
     turnSelected.user_id = this.authService.getDatosAutenticacion()?.id;
-    (this.user?.carnet)? (turnSelected.queue_id = "6370298856bec1914d5c10e9", turnSelected.isPay = true)
-    : turnSelected.queue_id = "636ffae407758b383399bca1", turnSelected.isPay = false;
+    (this.user?.carnet)? (turnSelected.queue_id = "6370298856bec1914d5c10e9", turnSelected.ispay = true)
+    : (turnSelected.queue_id = "636ffae407758b383399bca1", turnSelected.ispay = false);
     /**
      * cola de primera vez: "636ffae407758b383399bca1"
      * cola de renovar: "370298856bec1914d5c10e9""
      */
     turnSelected.start = this.infoFechaSeleccionada;
-    if(this.user?.carnet){
-      turnSelected.code = this.codigoDePago;
-    }
 
     this.turnService.createTurn(turnSelected).subscribe(
       (res)=>{

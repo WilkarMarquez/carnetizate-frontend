@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container flex flex-column align-items-center justify-content-center">
     <h5>Estadísticas sobre los turnos</h5>
     <div class="graficos grid">
-        <div>
+        <div class="flex flex-column align-items-center justify-content-center">
             <div class="card">
                 <h6>Total de turnos en la historia</h6>
                 <p id="totalTurnos">{{turnos.length}}</p>
@@ -12,17 +12,23 @@
             </div>
             
         </div>
-        <div class="card">
-            <h6>Total de turnos para mañana</h6>
-            <p id="totalTurnos">{{numTurnosManana}}</p>
-            <h6>Primera vez</h6>
-            <p id="totalTurnos">{{turnos.length}}</p>
-            <h6>Renovar</h6>
-            <p id="totalTurnos">{{turnos.length}}</p>
+        <div class="flex flex-column align-items-center justify-content-center">
+            <div class="card">
+                <h6>Total de turnos para mañana</h6>
+                <p id="totalTurnos">{{numTurnosManana}}</p>
+                <h6>Primera vez</h6>
+                <p id="totalTurnos">{{primeraVez}}</p>
+                <h6>Renovar</h6>
+                <p id="totalTurnos">{{renovar}}</p>
+            </div>
+            <div class="card">
+                <h6>Turnos no resueltos</h6>
+                <p id="totalTurnos">{{turnosNoResueltos}}</p>
+            </div>
         </div>
         <div class="card">
-            <p-chart type="doughnut" [data]="dataTorta" [style]="{'width': '30rem'}"></p-chart>
-
+            <h6>Turnos de esta semana</h6>
+            <p-chart type="bar" class="p-2" [data]="basicData" [options]="horizontalOptions" [style]="{'width': '50rem', 'height':'38rem'}"></p-chart>
         </div>
     </div>
 </div>
